@@ -7,7 +7,10 @@ class HomePage(TemplateView):
 
     def get(self,request):
         context = {
-            "loggedin" : request.user.is_authenticated
+            "loggedin" : request.user.is_authenticated,
+            "admin": request.user.is_staff
         }
+
+        print(context)
 
         return render (request,self.template_name,context)
