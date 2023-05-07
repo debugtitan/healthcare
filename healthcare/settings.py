@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-wbqqliff1q8#y8n63#4$(fnls4p^28vwftkbzyi5e!zp@39#2#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'healthcare.wsgi.application'
+WSGI_APPLICATION = 'healthcare.wsgi.app'
 
 
 # Database
