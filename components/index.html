@@ -71,8 +71,27 @@
               </ul>
             </li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            
+            {% if loggedin and admin %}
+            <li class="dropdown">
+              <a href="#"
+                ><span>Admin</span> <i class="bi bi-chevron-down"></i
+              ></a>
+              <ul>
+                <li><a href="#">View User</a></li>
+                <li><a href="#">Get Appointments</a></li>
+                <li><a href="#">Email User</a></li>
+                <li><a href="{% url 'admin:index' %}">Main Panel</a></li>
+              </ul>
+            </li>
+            {% endif %}
+
             <li>
-              <a class="getstarted scrollto" href="#about">Login</a>
+              {% if loggedin %}
+              <a class="getstarted scrollto" href="#about">Sign Out</a>
+              {% else %}
+              <a class="getstarted scrollto" href="#about">Sign In</a>
+              {% endif %}
             </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
