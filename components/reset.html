@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Password reset | reset your password</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'assets/css/forms.css' %}" />
+    <link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon" />
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form_body">
+        <div class="form_container">
+          <div class="form_styles">
+            <div class="formHeader_">
+              <p class="form_logo">
+                <span class="form_logo form_blue">D - </span>ALAO
+              </p>
+            </div>
+
+            <div class="form_divider"></div>
+            <div style="margin: 15px 0px">
+              <p class="form_title_big">Password reset</p>
+            </div>
+            <div class="form_inputs_po">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">E-mail</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="alao@gmail.com"
+                  type="email"
+                  autocomplete
+                  name='email'
+                  required
+              /></label>
+              <div style="color: #117211; font_size: 13px;">{{msg}}</div>
+            </div>
+            <button class="styles_button" type="submit">
+              Receive account reset link
+            </button>
+            <div class="form_divider"></div>
+            <div class="styles_redirects">
+              <a class="styles_redirects_text" href="{% url 'signin' %}"
+                >Login</a
+              ><a class="styles_redirects_text" href="{% url 'home' %}"
+                >Home</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="styles_footer">
+          <div class="styles_copyright">© <span>D - </span>ALAO - 2023</div>
+          <div class="styles_links">
+            <a href="#" target="_blank" class="styles_link">User Agreement</a
+            ><a href="#" target="_blank" class="styles_link">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

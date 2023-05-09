@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Sign In | Login to your account</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'assets/css/forms.css' %}" />
+    <link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon" />
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form_body">
+        <div class="form_container">
+          <div class="form_styles">
+            <div class="formHeader_">
+              <p class="form_logo">
+                <span class="form_logo form_blue">D - </span>Alao
+              </p>
+            </div>
+
+            <div class="form_divider"></div>
+            <div style="margin: 15px 0px">
+              <p class="form_title_big">Sign In</p>
+            </div>
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Username</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="Enter username"
+                  type="text"
+                  name="username"
+                  autocomplete
+              /></label>
+            </div>
+            <div class="form_inputs_login">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Password</span>
+                    <div class="form_infos">
+                      <img
+                        src="{% static 'assets/img/info.svg' %}"
+                        alt="Info"
+                        width="10"
+                        height="10"
+                      />
+                      <div class="form_style_container">
+                        Enter login password
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="password"
+                  type="password"
+                  name="password"
+                  required
+                  autocomplete
+              /></label>
+            </div>
+
+            <button class="styles_button" type="submit">Sign In</button>
+            <div class="form_divider"></div>
+            <div class="styles_redirects">
+              <a class="styles_redirects_text" href="{% url 'signup' %}"
+                >Create an account</a
+              ><a class="styles_redirects_text" href="{% url 'reset' %}"
+                >Reset password</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="styles_footer">
+          <div class="styles_copyright">© <span>D -</span>ALAO - 2023</div>
+          <div class="styles_links">
+            <a href="#" target="_blank" class="styles_link">User Agreement</a
+            ><a href="#" target="_blank" class="styles_link">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

@@ -6,8 +6,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <title>D-ALAO Health Agency</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <meta content="healthcare, health,health recruit, nurses, medical labs " name="keywords" />
+    <meta
+      name="description"
+      content=" healthcare organization providing exceptional patient care with compassion and expertise. We also offer recruitment services to healthcare organizations seeking top talent in the industry. With years of experience, we have developed a reputation for delivering exceptional recruitment services to our clients."
+    />
 
     <!-- Favicons -->
     <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
@@ -60,7 +63,9 @@
           <ul>
             <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-
+            {% if loggedin %}
+            <li><a class="nav-link scrollto" href="news">News</a></li>
+            {% endif %}
             <li class="dropdown">
               <a href="#"
                 ><span>Careers</span> <i class="bi bi-chevron-down"></i
@@ -71,7 +76,7 @@
               </ul>
             </li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-            
+
             {% if loggedin and admin %}
             <li class="dropdown">
               <a href="#"
@@ -79,7 +84,7 @@
               ></a>
               <ul>
                 <li><a href="#">View User</a></li>
-                <li><a href="#">Get Appointments</a></li>
+                <li><a href="#">Appointments</a></li>
                 <li><a href="#">Email User</a></li>
                 <li><a href="{% url 'admin:index' %}">Main Panel</a></li>
               </ul>
@@ -88,20 +93,24 @@
 
             <li>
               {% if loggedin %}
-              <a class="getstarted scrollto" href="#about">Sign Out</a>
+              <a href="signout" class="getstarted scrollto" href="#about"
+                >Sign Out</a
+              >
               {% else %}
-              <a class="getstarted scrollto" href="#about">Sign In</a>
+              <a
+                href="{% url 'signin' %}"
+                class="getstarted scrollto"
+                href="#about"
+                >Sign In</a
+              >
               {% endif %}
             </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-        <!-- .navbar -->
       </div>
     </header>
-    <!-- End Header -->
 
-    <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
       <div class="container">
         <div class="row">
@@ -116,103 +125,29 @@
             </h2>
             <div data-aos="fade-up" data-aos-delay="600">
               <div class="text-center text-lg-start">
+                {% if loggedin %}
                 <a
                   href="#about"
+                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
+                >
+                  <span>Make an Appointment</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                {% else %}
+                <a
+                  href="{% url 'signup' %}"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
                 >
                   <span>Get Started</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
+                {% endif %}
               </div>
             </div>
           </div>
-          <!--
-          <div
-            class="col-lg-6 hero-img"
-            data-aos="zoom-out"
-            data-aos-delay="200"
-          >
-            <img
-              src="{% static 'assets/img/hero-img.png' %}"
-              class="img-fluid"
-              alt=""
-            />
-          </div>-->
         </div>
       </div>
     </section>
-    <!-- End Hero -->
-
-    <!-- ======= About Section ======= -->
-    <!--<section id="about">
-      <div class="container" data-aos="fade-up">
-        <header class="section-header">
-          <p>About Us</p>
-        </header>
-
-        <div class="row about-container">
-          <div class="col-lg-6 content order-lg-1 order-2">
-            <p>
-              Welcome to D-Alao, a leading healthcare provider committed to
-              providing exceptional healthcare services to our patients. At
-              D-Alao, we believe that quality healthcare is a right, not a
-              privilege, and we strive to make our services accessible and
-              affordable to all. Our team of experienced healthcare
-              professionals is dedicated to providing accurate diagnosis and
-              effective treatment of illnesses, chronic disease management,
-              preventive care, and rehabilitation services. We use the latest
-              evidence-based guidelines and advanced medical technologies to
-              provide the best care possible to our patients. We are committed
-              to ensuring the quality and safety of our services by continuously
-              monitoring patient outcomes, implementing policies and procedures
-              to prevent errors and adverse events, and regularly updating our
-              services to meet the changing needs of our patients. At D-Alao, we
-              are passionate about promoting public health and disease
-              prevention. We provide education and resources to the community to
-              help individuals maintain healthy lifestyles and prevent
-              illnesses. We also advocate for policies that improve health
-              outcomes and access to care.
-            </p>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">
-                Et harum quidem rerum facilis est et expedita distinctio. Nam
-                libero tempore, cum soluta nobis est eligendi
-              </p>
-            </div>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bi bi-brightness-high"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum
-              </p>
-            </div>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">
-                Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat tarad limino ata
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-            <img
-              src="{% static 'assets/img/drugs.jpg' %}"
-              class="img-fluid"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </section>-->
-    <!-- End About Section -->
 
     <main id="main">
       <section id="about" class="about">
@@ -225,9 +160,7 @@
             >
               <div class="content">
                 <h3>Who We Are</h3>
-                <h2>
-                  D-ALAO HEALTHCARE AGENCY
-                </h2>
+                <h2>D-ALAO HEALTHCARE AGENCY</h2>
                 <p>
                   We are a healthcare organization and recruitment service
                   dedicated to providing the highest quality care possible to

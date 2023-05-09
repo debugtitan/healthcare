@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Register | create a client account</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'assets/css/forms.css' %}" />
+    <link
+      rel="icon"
+      href="{% static 'assets/img/favicon.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form_body">
+        <div class="form_container">
+          <div class="form_styles">
+            <div class="formHeader_">
+              <p class="form_logo">
+                <span class="form_logo form_blue">D - </span>Alao
+              </p>
+            </div>
+
+            <div class="form_divider"></div>
+            <div style="margin: 15px 0px">
+              <p class="form_title_big">Create an account</p>
+            </div>
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Username</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="enter username"
+                  type="text"
+                  name="username"
+                  autocomplete
+                  required
+              /></label>
+              <div class="cls">{{username_err}}</div>
+            </div>
+            
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">E-mail</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="example@gmail.com"
+                  type="email"
+                  name="email"
+                  autocomplete
+                  required
+              /></label>
+              <div class="cls">{{email_err}}</div>
+            </div>
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Firstname</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  type="text"
+                  name="firstname"
+                  autocomplete
+                  required
+              /></label>
+            </div>
+
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Lastname</span>
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  type="text"
+                  name="lastname"
+                  autocomplete
+                  required
+              /></label>
+            </div>
+            <div class="form_inputs">
+              <label class="form_labels"
+                ><div class="form_rows">
+                  <div class="form_contents form_small">
+                    <span class="form_titles">Password</span>
+                    <div class="form_infos">
+                      <img
+                        src="{% static '/assets/img/info.svg' %}"
+                        alt="Info"
+                        width="10"
+                        height="10"
+                      />
+                      <div class="form_style_container">
+                        Password should have 1 uppercase, 1 number, and more
+                        than 6 characters in total
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                <input
+                  class="form_all_inputs"
+                  placeholder="password"
+                  type="password"
+                  required
+                  name="psw"
+                  autocomplete
+              /></label>
+            </div>
+            
+
+            <div class="form_checkbox">
+              <span
+                >By creating an account, you agree to D-ALAO
+                <a href="#" target="_blank">service agreement</a></span
+              >
+            </div>
+            <div class="form_checkbox">
+              <span
+                >I agree to D-ALAO
+                <a href="#" target="_blank">User Agreement</a></span
+              >
+            </div>
+            <button class="styles_button" type="submit">
+              Create an account
+            </button>
+            <div class="form_divider"></div>
+            <a class="styles_link" href="{% url 'signin' %}"><p>Sign in</p></a>
+          </div>
+        </div>
+        <div class="styles_footer">
+          <div class="styles_copyright">© <span>D</span>ALAO - 2023</div>
+          <div class="styles_links">
+            <a href="#" target="_blank" class="styles_link">User Agreement</a
+            ><a href="#" target="_blank" class="styles_link">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </form>
+    <script>
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    </script>
+  </body>
+</html>
