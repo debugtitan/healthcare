@@ -8,7 +8,9 @@ from django.utils.encoding import force_bytes,force_str
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 import logging
+from .models import ResetPassword
 
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class ProcessPasswordReset():
 
@@ -16,33 +18,39 @@ class ProcessPasswordReset():
         self.token = token
         self.user_id = user_id
         self.user = self.get_member_username()
+       
 
     def get_member_username(self):
         uid = force_str(urlsafe_base64_decode(self.user_id))
-        logging.INFO(uid)
+        
         try:
+            #User.objects.values().get(id=uid)
             return User.objects.get(id=uid)
         except Exception:
             return None
 
     def check_token_valid(self):
-        if self.user is not None:
+        if self.user is not  None:
             try:
-                if PasswordResetTokenGenerator().check_token(self.user, self.token) and self.user.password_reset_expiration > timezone.now():
+                query_user_token = ResetPassword.objects.get(user=self.user)
+                logging.info("hi", query_user_token.token_expire_time)
+                if PasswordResetTokenGenerator().check_token(self.user, self.token) and query_user_token.token_expire_time> timezone.now():
+                    #logging.info(f'{self.token} for {self.get_member_username()} is valid')
                     return True
-            except Exception:
-                return False
+            except Exception as err:
+                #logging.info(f'{self.token} for {self.get_member_username()} is not  valid or expired\nerr: {err}')
+                return False 
 
     def update_member_password(self,newPassword: str):
         try:
             if self.user is not None:
                 self.user.set_password(newPassword)
-                self.user.password_reset_token = None
-                self.user.password_reset_expiration = None
+                self.user.reset_token = None
+                self.user.token_expire_time = None
                 self.user.save()
                 return True
         except Exception as e:
-            logging.WARNING(f'function update_member_password : {e}')
+            #logging.WARNING(f'function update_member_password : {e}')
             return False
 
 
@@ -52,13 +60,14 @@ class ResetPatientPassword(TemplateView):
 
     def post(self,request):
         try:
-            user = User.objects.get(email=request.POST['email'])
-            token = PasswordResetTokenGenerator().make_token(user) #generating a random token for unique user
-            uid = urlsafe_base64_encode(force_bytes(user.pk)),
-            print(token,uid)
-            
-            user.password_reset_token = token
-            user.password_reset_expiration = timezone.now() + timezone.timedelta(hours=1) #setting up the token expiry time to one hour
+            user_id = User.objects.get(email=request.POST['email'])
+            user = ResetPassword()
+            token = PasswordResetTokenGenerator().make_token(user_id) #generating a random token for unique user
+            uid = urlsafe_base64_encode(force_bytes(user_id.pk)), 
+            #print(token,uid)
+            user.user = user_id
+            user.reset_token = token
+            user.token_expire_time = timezone.now() + timezone.timedelta(hours=1) #setting up the token expiry time to one hour
             user.save()
             reset_link = request.build_absolute_uri('/reset-password/') + '?user=' + uid[0] + '&token=' + token
             subject = 'Password Reset Request'
@@ -79,27 +88,23 @@ class ResetPatientPassword(TemplateView):
 
 
 
-
-
-
-"""
-def reset_confirm(request):
-    user_id = request.GET.get('user')
-    token = request.GET.get('token')
-    if verify(token=token,user_id=user_id).check_token_valid:
-        print('true')
-        if request.method == 'POST':
-            password = request.POST.get('password')
-            print(password)
-            if verify(token=token,user_id=user_id).update_member_password(newPassword=str(password)):
-                return redirect('login')
+def resetConfirm(request):
+    user_id = request.GET['user']
+    token = request.GET['token']
+    if ProcessPasswordReset(token=token,user_id=user_id).check_token_valid():
+        if request.POST:
+            password = request.POST['password']
+            #print(password)
+            if ProcessPasswordReset(token=token,user_id=user_id).update_member_password(newPassword=str(password)):
+                return redirect('signin')
             else:
-                return render(request, 'forms/reset_confirm.html')
+                return render(request, '404.html')
         else:
-            return render(request, 'forms/reset_confirm.html')
+            return render(request, 'reset_confirm.html')
 
-    #TAKE THE USER BACK TO LOGIN SINCE WE CAN'T VERIFY THEIR ID AND TOKEN RATHER SEND 404 ERROR
+    #SINCE WE CAN'T VERIFY THEIR ID AND TOKEN RATHER SEND 404 ERROR
     else:
         return render(request, '404.html')
-"""
-    
+
+
+
