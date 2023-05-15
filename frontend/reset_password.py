@@ -45,9 +45,10 @@ class ProcessPasswordReset():
         try:
             if self.user is not None:
                 self.user.set_password(newPassword)
-                self.user.reset_token = None
-                self.user.token_expire_time = None
-                self.user.save()
+                updates = ResetPassword.objects.get(user=self.user)
+                updates.reset_token = None
+                updates.token_expire_time = None
+                updates.save()
                 return True
         except Exception as e:
             #logging.WARNING(f'function update_member_password : {e}')
@@ -93,6 +94,7 @@ def resetConfirm(request):
     token = request.GET['token']
     if ProcessPasswordReset(token=token,user_id=user_id).check_token_valid():
         if request.POST:
+            
             password = request.POST['password']
             #print(password)
             if ProcessPasswordReset(token=token,user_id=user_id).update_member_password(newPassword=str(password)):

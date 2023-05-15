@@ -1,0 +1,88 @@
+{% extends 'index.html' %} {% load static %} {% load humanize %} {% block 'content' %}
+<main id="main">
+	<!-- ======= Breadcrumbs ======= -->
+	<section class="breadcrumbs">
+		<div class="container">
+			<ol>
+				<li><a href="{% url 'home' %}">Home</a></li>
+				<li>News</li>
+			</ol>
+			<button  onclick="location.href='/create-blog'">Create Post</button>
+		</div>
+	</section>
+
+	<section
+		id="blog"
+		class="blog">
+		<div
+			class="container"
+			data-aos="fade-up">
+			<div class="row">
+				<div class="col-lg-8 entries">
+					{% for blog in object_list %}
+					<article class="entry">
+						<div class="entry-img">
+							<!----
+							<img
+								src="{{blog.blog_image.url}}"
+								alt=""
+								class="img-fluid" />-->
+						</div>
+
+						<h2 class="entry-title">
+							<a href="{% url 'blog' blog_id=blog.blog_id%}">{{blog.blog_title}} {{blog.id}}</a>
+						</h2>
+
+						<div class="entry-meta">
+							<ul>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-person"></i>
+									<a href="{% url 'blog' blog_id=blog.blog_id%}">{{blog.user}}</a>
+								</li>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-calendar-event"></i>
+									<a href="{% url 'blog' blog_id=blog.blog_id%}"><time>{{ blog.blog_created_time|date:"F j, Y" }}</time></a>
+								</li>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-clock"></i>
+									<a href="{% url 'blog' blog_id=blog.blog_id%}"><time>{{ blog.blog_created_time|date:"h:i A" }}</time></a>
+								</li>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-chat-dots"> {{ blog.blogcomment_set.count |intcomma:"h:i A" }}</i>
+									<a href="{% url 'blog' blog_id=blog.blog_id%}"></a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="entry-content">
+							<p>{{blog.blog_description}}</p>
+							<div class="read-more">
+								<a href="{% url 'blog' blog_id=blog.blog_id%}">Read More</a>
+							</div>
+						</div>
+					</article>
+					<!-- End blog entry -->
+					{% endfor %}
+				</div>
+				<div class="col-lg-4">
+					<div class="sidebar">
+						<h3 class="sidebar-title">Recent Posts</h3>
+						{% for blog_item in recent_posts %}
+						<div class="sidebar-item recent-posts">
+							<div class="post-item clearfix">
+								<h4>
+									<a href="{% url 'blog' blog_id=blog_item.blog_id%}">{{ blog_item.blog_title }}</a>
+								</h4>
+								<time>{{ blog_item.blog_created_time|date:"h:i A" }}</time>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- End Blog Section -->
+</main>
+{% endblock 'content' %}

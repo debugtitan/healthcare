@@ -1,0 +1,405 @@
+{% extends 'index.html' %} {% load static %} {% block 'content' %}
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        {% if msg %}
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+              <div class="alert alert_success">
+                <button
+                  aria-hidden="true"
+                  data-dismiss="alert"
+                  class="close"
+                  type="button"
+                >
+                  &times;
+                </button>
+                <strong>success!</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <h1 data-aos="fade-up">Seek & Employ</h1>
+        <h2 data-aos="fade-up" data-aos-delay="400">
+          D-ALAO health care agency recruits and supplies highly-competent
+          nurses and healthcare professionals to the NHS and private health care
+          organizations across the UK. We use a rigorous recruitment process to
+          ensure quality and work closely with clients to meet their unique
+          staffing needs.
+        </h2>
+        <div data-aos="fade-up" data-aos-delay="600">
+          <div class="text-center text-lg-start">
+            {% if loggedin %}
+            <a
+              href="{% url 'appointments' %}"
+              class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
+            >
+              <span>Make an Appointment</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            {% else %}
+            <a
+              href="{% url 'signup' %}"
+              class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
+            >
+              <span>Get Started</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-0">
+        <div
+          class="col-lg-6 d-flex flex-column justify-content-center"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="content">
+            <h3>Who We Are</h3>
+            <h2>D-ALAO HEALTHCARE AGENCY</h2>
+            <p>
+              We are a healthcare organization and recruitment service dedicated
+              to providing the highest quality care possible to patients. With a
+              commitment to patient-centered care, evidence-based research and
+              practice, accountability, and continuous improvement, we strive to
+              create a culture of excellence within our organization. Our
+              recruitment service connects qualified healthcare professionals
+              with rewarding career opportunities, enabling us to deliver
+              exceptional care to our patients. We are passionate about
+              improving healthcare outcomes and making a positive impact in the
+              lives of our patients and the healthcare industry as a whole.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="values" class="values">
+    <div class="container" data-aos="fade-up">
+      <header class="section-header">
+        <h2>Our Values</h2>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="box">
+            <img
+              src="{% static 'assets/img/patient.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+            <h3>Patient-centered care</h3>
+            <p>
+              At D-ALAO, we put our patients at the center of everything we do.
+              Our team of healthcare professionals is committed to providing
+              personalized, compassionate care that prioritizes the unique needs
+              and preferences of each patient
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="col-lg-4 mt-4 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div class="box">
+            <img
+              src="{% static 'assets/img/teamwork.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+            <h3>Teamwork and collaboration</h3>
+            <p>
+              we believe that effective teamwork and collaboration are essential
+              to delivering high-quality care. Our team of healthcare
+              professionals from different disciplines work together to provide
+              comprehensive care. We foster a culture of mutual respect, open
+              communication, and shared decision-making to ensure that our
+              patients receive the best possible care.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="col-lg-4 mt-4 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div class="box">
+            <img
+              src="{% static 'assets/img/improve.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+            <h3>Continuous improvement.</h3>
+
+            <p>
+              Continuous improvement is a key value at our healthcare agency. We
+              are dedicated to constantly learning, growing, and evolving to
+              provide the best possible care to our patients. By regularly
+              assessing and improving our processes and practices, we strive to
+              deliver the highest quality care possible and achieve better
+              outcomes for our patients.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="col-lg-4 mt-4 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div class="box">
+            <img
+              src="{% static 'assets/img/research.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+            <h3>Evidence-Based Practice.</h3>
+
+            <p>
+              We are committed to evidence-based research and practice at our
+              healthcare agency, staying up-to-date with the latest scientific
+              findings to ensure our treatments and practices are effective,
+              safe, and based on the best available evidence.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="col-lg-4 mt-4 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div class="box">
+            <img
+              src="{% static 'assets/img/accountability.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+            <h3>Accountability.</h3>
+
+            <p>
+              We prioritize accountability at our healthcare agency, taking
+              responsibility for our actions and decisions. We believe that
+              transparency and honesty build trust with patients and help us
+              provide the highest quality care possible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="counts" class="counts">
+    <div class="container" data-aos="fade-up">
+      <div class="row gy-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-postage"></i>
+            <div>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="4"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>Jobs posted</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-journal-richtext" style="color: #ee6c20"></i>
+            <div>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="561"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>Registered members</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-people" style="color: #bb0852"></i>
+            <div>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="15"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>Workers</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-person-workspace" style="color: #bb0852"></i>
+            <div>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="4"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>Vacancies</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients" class="clients">
+    <div class="container" data-aos="fade-up">
+      <header class="section-header">
+        <h2>Our Partners</h2>
+      </header>
+
+      <div class="clients-slider swiper">
+        <div class="swiper-wrapper align-items-center">
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/GIG.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/healthtrust.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/ISO.jpg' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/member.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/midwifery.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/nhs.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/RGIA.jpg' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/WFA.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'assets/img/clients/nsn.png' %}"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+  <!-- End Clients Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+      <header class="section-header">
+        <h2>Contact</h2>
+        <p>
+          We understand that sometimes it's easier to discuss your needs and
+          concerns face-to-face. That's why we welcome you to visit us in our
+          office for a personalized consultation. Alternatively, if you're short
+          on time or prefer to communicate remotely, you can simply fill out our
+          online form and we'll get in touch with you promptly. We strive to
+          provide you with the best service possible, and we're always happy to
+          assist you in any way we can. So feel free to reach out to us anytime
+          – we're here to help!
+        </p>
+      </header>
+
+      <div class="row gy-4">
+        <div class="col-lg-6">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <p>ALAO,<br />New York, NY 022</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                <p>+44 7404 4244 75</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                <p>alao@alaorecruits.com</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-clock"></i>
+                <h3>Open Hours</h3>
+                <p>Monday - Friday<br />9:00AM - 05:00PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+{% endblock 'content' %}

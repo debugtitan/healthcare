@@ -1,681 +1,298 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			content="width=device-width, initial-scale=1.0"
+			name="viewport" />
 
-    <title>D-ALAO Health Agency</title>
-    <meta content="healthcare, health,health recruit, nurses, medical labs " name="keywords" />
-    <meta
-      name="description"
-      content=" healthcare organization providing exceptional patient care with compassion and expertise. We also offer recruitment services to healthcare organizations seeking top talent in the industry. With years of experience, we have developed a reputation for delivering exceptional recruitment services to our clients."
-    />
+		<title>D-ALAO Health Agency</title>
+		<meta
+			content="healthcare, health,health recruit, nurses, medical labs "
+			name="keywords" />
+		<meta
+			name="description"
+			content=" healthcare organization providing exceptional patient care with compassion and expertise. We also offer recruitment services to healthcare organizations seeking top talent in the industry. With years of experience, we have developed a reputation for delivering exceptional recruitment services to our clients." />
 
-    <!-- Favicons -->
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+		<!-- Favicons -->
+		<link
+			href="{% static 'assets/img/favicon.png' %}"
+			rel="icon" />
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-      rel="stylesheet"
-    />
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet" />
 
-    <!-- Vendor CSS Files -->
-    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
-    <link
-      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
-      rel="stylesheet"
-    />
+		<!-- Vendor CSS Files -->
+		<link
+			href="{% static 'assets/vendor/aos/aos.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+			rel="stylesheet" />
 
-    <!-- Template Main CSS File -->
-    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
-  </head>
+		<!-- Template Main CSS File -->
+		<link
+			href="{% static 'assets/css/style.css' %}"
+			rel="stylesheet" />
+	</head>
 
-  <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top">
-      <div
-        class="container-fluid container-xl d-flex align-items-center justify-content-between"
-      >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <img src="{% static 'assets/img/logo.png' %}" alt="" />
-          <span>D-ALAO</span>
-        </a>
+	<body>
+		<!-- ======= Header ======= -->
+		<header
+			id="header"
+			class="header fixed-top">
+			<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+				<a
+					href="{% url 'home' %}"
+					class="logo d-flex align-items-center">
+					<img
+						src="{% static 'assets/img/logo.png' %}"
+						alt="" />
+					<span>D-ALAO</span>
+				</a>
 
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="#about">About</a></li>
-            {% if loggedin %}
-            <li><a class="nav-link scrollto" href="news">News</a></li>
-            {% endif %}
-            <li class="dropdown">
-              <a href="#"
-                ><span>Careers</span> <i class="bi bi-chevron-down"></i
-              ></a>
-              <ul>
-                <li><a href="#">Vacancies - Internal Jobs</a></li>
-                <li><a href="#">Start your own Business</a></li>
-              </ul>
-            </li>
-            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+				<nav
+					id="navbar"
+					class="navbar">
+					<ul>
+						<li>
+							<a
+								class="nav-link scrollto active"
+								href="{% url 'home' %}"
+								>Home</a
+							>
+						</li>
+						<li>
+							<a
+								class="nav-link scrollto"
+								href="#about"
+								>About</a
+							>
+						</li>
+						{% if request.user.is_authenticated %}
+						<li>
+							<a
+								class="nav-link scrollto"
+								href="{% url 'blogs' %}"
+								>News</a
+							>
+						</li>
+						{% endif %}
+						<li class="dropdown">
+							<a href="#"><span>Careers</span> <i class="bi bi-chevron-down"></i></a>
+							<ul>
+								<li><a href="#">Vacancies - Internal Jobs</a></li>
+								<li><a href="#">Start your own Business</a></li>
+							</ul>
+						</li>
+						<li>
+							<a
+								class="nav-link scrollto"
+								href="#contact"
+								>Contact</a
+							>
+						</li>
 
-            {% if loggedin and admin %}
-            <li class="dropdown">
-              <a href="#"
-                ><span>Admin</span> <i class="bi bi-chevron-down"></i
-              ></a>
-              <ul>
-                <li><a href="#">View User</a></li>
-                <li><a href="#">Appointments</a></li>
-                <li><a href="#">Email User</a></li>
-                <li><a href="{% url 'admin:index' %}">Main Panel</a></li>
-              </ul>
-            </li>
-            {% endif %}
+						{% if request.user.is_authenticated and request.user.is_staff %}
+						<li class="dropdown">
+							<a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
+							<ul>
+								<li><a href="#">View User</a></li>
+								<li><a href="#">Appointments</a></li>
+								<li><a href="#">Email User</a></li>
+								<li><a href="{% url 'admin:index' %}">Main Panel</a></li>
+							</ul>
+						</li>
+						{% endif %}
 
-            <li>
-              {% if loggedin %}
-              <a href="signout" class="getstarted scrollto" href="#about"
-                >Sign Out</a
-              >
-              {% else %}
-              <a
-                href="{% url 'signin' %}"
-                class="getstarted scrollto"
-                href="#about"
-                >Sign In</a
-              >
-              {% endif %}
-            </li>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-      </div>
-    </header>
+						<li>
+							{% if request.user.is_authenticated %}
+							<a
+								href="signout"
+								class="getstarted scrollto"
+								href="#about"
+								>Sign Out</a
+							>
+							{% else %}
+							<a
+								href="{% url 'signin' %}"
+								class="getstarted scrollto"
+								href="#about"
+								>Sign In</a
+							>
+							{% endif %}
+						</li>
+					</ul>
+					<i class="bi bi-list mobile-nav-toggle"></i>
+				</nav>
+			</div>
+		</header>
 
-    <section id="hero" class="hero d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up">Seek & Employ</h1>
-            <h2 data-aos="fade-up" data-aos-delay="400">
-              D-ALAO health care agency recruits and supplies highly-competent
-              nurses and healthcare professionals to the NHS and private health
-              care organizations across the UK. We use a rigorous recruitment
-              process to ensure quality and work closely with clients to meet
-              their unique staffing needs.
-            </h2>
-            <div data-aos="fade-up" data-aos-delay="600">
-              <div class="text-center text-lg-start">
-                {% if loggedin %}
-                <a
-                  href="#about"
-                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
-                >
-                  <span>Make an Appointment</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-                {% else %}
-                <a
-                  href="{% url 'signup' %}"
-                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
-                >
-                  <span>Get Started</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+		{% block 'content' %}{% endblock 'content' %}
 
-    <main id="main">
-      <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-          <div class="row gx-0">
-            <div
-              class="col-lg-6 d-flex flex-column justify-content-center"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="content">
-                <h3>Who We Are</h3>
-                <h2>D-ALAO HEALTHCARE AGENCY</h2>
-                <p>
-                  We are a healthcare organization and recruitment service
-                  dedicated to providing the highest quality care possible to
-                  patients. With a commitment to patient-centered care,
-                  evidence-based research and practice, accountability, and
-                  continuous improvement, we strive to create a culture of
-                  excellence within our organization. Our recruitment service
-                  connects qualified healthcare professionals with rewarding
-                  career opportunities, enabling us to deliver exceptional care
-                  to our patients. We are passionate about improving healthcare
-                  outcomes and making a positive impact in the lives of our
-                  patients and the healthcare industry as a whole.
-                </p>
-                <!--<div class="text-center text-lg-start">
-                  <a
-                    href="#"
-                    class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center"
-                  >
-                    <span>Read More</span>
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
-                </div>-->
-              </div>
-            </div>
+		<footer
+			id="footer"
+			class="footer">
+			<div class="footer-newsletter">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-12 text-center">
+							<h4>Newsletter</h4>
+							<p>Leave your email let's keep in touch!</p>
+						</div>
+						<div class="col-lg-6">
+							<input
+								type="email"
+								name="email"
+								id="newsletter"
+								required />
+							<input
+								type="submit"
+								value="Subscribe" />
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <!--<div
-              class="col-lg-6 d-flex align-items-center"
-              data-aos="zoom-out"
-              data-aos-delay="200"
-            >
-              <img src="assets/img/about.jpg" class="img-fluid" alt="" />
-            </div>-->
-          </div>
-        </div>
-      </section>
-      <section id="values" class="values">
-        <div class="container" data-aos="fade-up">
-          <header class="section-header">
-            <h2>Our Values</h2>
-          </header>
+			<div class="footer-top">
+				<div class="container">
+					<div class="row gy-4">
+						<div class="col-lg-5 col-md-12 footer-info">
+							<a
+								href="index.html"
+								class="logo d-flex align-items-center">
+								<img
+									src="{% static 'assets/img/logo.png' %}"
+									alt="" />
+								<span>Why us</span>
+							</a>
+							<p>
+								D ALAO Our health agency recruitment platform is always at your service. We operate 24/7 to provide you with the best possible assistance in finding
+								the right healthcare job. Whether you're a job seeker or an employer, we're committed to ensuring that your experience with us is seamless and
+								efficient. Trust us to help you take your career to the next level!
+							</p>
+							<div class="social-links mt-3">
+								<a
+									href="#"
+									class="twitter"
+									><i class="bi bi-twitter"></i
+								></a>
+								<a
+									href="#"
+									class="facebook"
+									><i class="bi bi-facebook"></i
+								></a>
+								<a
+									href="#"
+									class="linkedin"
+									><i class="bi bi-linkedin"></i
+								></a>
+							</div>
+						</div>
 
-          <div class="row">
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="box">
-                <img
-                  src="{% static 'assets/img/patient.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Patient-centered care</h3>
-                <p>
-                  At D-ALAO, we put our patients at the center of everything we
-                  do. Our team of healthcare professionals is committed to
-                  providing personalized, compassionate care that prioritizes
-                  the unique needs and preferences of each patient
-                </p>
-              </div>
-            </div>
+						<div class="col-lg-2 col-6 footer-links">
+							<h4>Useful Links</h4>
+							<ul>
+								<li>
+									<i class="bi bi-chevron-right"></i>
+									<a href="#">Terms of service</a>
+								</li>
+								<li>
+									<i class="bi bi-chevron-right"></i>
+									<a href="#">Privacy policy</a>
+								</li>
+								<li>
+									<i class="bi bi-chevron-right"></i>
+									<a href="#">Cookie policy</a>
+								</li>
+							</ul>
+						</div>
 
-            <div
-              class="col-lg-4 mt-4 mt-lg-0"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div class="box">
-                <img
-                  src="{% static 'assets/img/teamwork.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Teamwork and collaboration</h3>
-                <p>
-                  we believe that effective teamwork and collaboration are
-                  essential to delivering high-quality care. Our team of
-                  healthcare professionals from different disciplines work
-                  together to provide comprehensive care. We foster a culture of
-                  mutual respect, open communication, and shared decision-making
-                  to ensure that our patients receive the best possible care.
-                </p>
-              </div>
-            </div>
+						<div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+							<h4>Contact Us</h4>
+							<p>
+								ALAO <br />
+								New York, NY 022<br />
+								United States <br /><br />
+								<strong>Booking Line:</strong> +44 7404 4244 75<br />
+								<strong>Email:</strong> alao@alaorecruits.com<br />
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <div
-              class="col-lg-4 mt-4 mt-lg-0"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <div class="box">
-                <img
-                  src="{% static 'assets/img/improve.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Continuous improvement.</h3>
+			<div class="container">
+				<div class="copyright">
+					Copyright &copy; 2023
+					<strong><span>D ALAO RECRUITMENT LTD</span></strong
+					>.
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
 
-                <p>
-                  Continuous improvement is a key value at our healthcare
-                  agency. We are dedicated to constantly learning, growing, and
-                  evolving to provide the best possible care to our patients. By
-                  regularly assessing and improving our processes and practices,
-                  we strive to deliver the highest quality care possible and
-                  achieve better outcomes for our patients.
-                </p>
-              </div>
-            </div>
+		<a
+			href="#"
+			class="back-to-top d-flex align-items-center justify-content-center"
+			><i class="bi bi-arrow-up-short"></i
+		></a>
 
-            <div
-              class="col-lg-4 mt-4 mt-lg-0"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <div class="box">
-                <img
-                  src="{% static 'assets/img/research.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Evidence-Based Practice.</h3>
+		<!-- Vendor JS Files -->
+		<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+		<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-                <p>
-                  We are committed to evidence-based research and practice at
-                  our healthcare agency, staying up-to-date with the latest
-                  scientific findings to ensure our treatments and practices are
-                  effective, safe, and based on the best available evidence.
-                </p>
-              </div>
-            </div>
+		<!-- Template Main JS File -->
+		<script src="{% static 'assets/js/main.js' %}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				let subscribeButton = document.querySelector('input[type="submit"]');
+				subscribeButton.addEventListener("click", function (event) {
+					event.preventDefault(); // Prevents the form from submitting
 
-            <div
-              class="col-lg-4 mt-4 mt-lg-0"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <div class="box">
-                <img
-                  src="{% static 'assets/img/accountability.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Accountability.</h3>
+					let emailInput = document.querySelector('input[name="email"]').value;
 
-                <p>
-                  We prioritize accountability at our healthcare agency, taking
-                  responsibility for our actions and decisions. We believe that
-                  transparency and honesty build trust with patients and help us
-                  provide the highest quality care possible.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="counts" class="counts">
-        <div class="container" data-aos="fade-up">
-          <div class="row gy-4">
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box">
-                <i class="bi bi-postage"></i>
-                <div>
-                  <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="4"
-                    data-purecounter-duration="1"
-                    class="purecounter"
-                  ></span>
-                  <p>Jobs posted</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box">
-                <i class="bi bi-journal-richtext" style="color: #ee6c20"></i>
-                <div>
-                  <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="561"
-                    data-purecounter-duration="1"
-                    class="purecounter"
-                  ></span>
-                  <p>Registered members</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box">
-                <i class="bi bi-people" style="color: #bb0852"></i>
-                <div>
-                  <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="15"
-                    data-purecounter-duration="1"
-                    class="purecounter"
-                  ></span>
-                  <p>Workers</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box">
-                <i class="bi bi-person-workspace" style="color: #bb0852"></i>
-                <div>
-                  <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="4"
-                    data-purecounter-duration="1"
-                    class="purecounter"
-                  ></span>
-                  <p>Vacancies</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="clients" class="clients">
-        <div class="container" data-aos="fade-up">
-          <header class="section-header">
-            <h2>Our Partners</h2>
-          </header>
-
-          <div class="clients-slider swiper">
-            <div class="swiper-wrapper align-items-center">
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/GIG.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/healthtrust.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/ISO.jpg' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/member.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/midwifery.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/nhs.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/RGIA.jpg' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/WFA.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="{% static 'assets/img/clients/nsn.png' %}"
-                  class="img-fluid"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
-      <!-- End Clients Section -->
-
-      <!-- ======= Contact Section ======= -->
-      <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-          <header class="section-header">
-            <h2>Contact</h2>
-            <p>
-              We understand that sometimes it's easier to discuss your needs and
-              concerns face-to-face. That's why we welcome you to visit us in
-              our office for a personalized consultation. Alternatively, if
-              you're short on time or prefer to communicate remotely, you can
-              simply fill out our online form and we'll get in touch with you
-              promptly. We strive to provide you with the best service possible,
-              and we're always happy to assist you in any way we can. So feel
-              free to reach out to us anytime – we're here to help!
-            </p>
-          </header>
-
-          <div class="row gy-4">
-            <div class="col-lg-6">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <div class="info-box">
-                    <i class="bi bi-geo-alt"></i>
-                    <h3>Address</h3>
-                    <p>ALAO,<br />New York, NY 022</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="info-box">
-                    <i class="bi bi-telephone"></i>
-                    <h3>Call Us</h3>
-                    <p>+44 7404 4244 75</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="info-box">
-                    <i class="bi bi-envelope"></i>
-                    <h3>Email Us</h3>
-                    <p>alao@alaorecruits.com</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="info-box">
-                    <i class="bi bi-clock"></i>
-                    <h3>Open Hours</h3>
-                    <p>Monday - Friday<br />9:00AM - 05:00PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <form method="post" class="php-email-form">
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      name="name"
-                      class="form-control"
-                      placeholder="Your Name"
-                      required
-                    />
-                  </div>
-
-                  <div class="col-md-6">
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      placeholder="Your Email"
-                      required
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      placeholder="Subject"
-                      required
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <textarea
-                      class="form-control"
-                      name="message"
-                      rows="6"
-                      placeholder="Message"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Your message has been sent. Thank you!
-                    </div>
-
-                    <button type="submit">Send Message</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Contact Section -->
-    </main>
-    <!-- End #main -->
-
-    <!-- ======= F.A.Q Section ======= -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-      <div class="footer-newsletter">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-              <h4>Newsletter</h4>
-              <p>Leave your email let's keep in touch!</p>
-            </div>
-            <div class="col-lg-6">
-              <form action="" method="post">
-                <input type="email" name="email" /><input
-                  type="submit"
-                  value="Subscribe"
-                />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-top">
-        <div class="container">
-          <div class="row gy-4">
-            <div class="col-lg-5 col-md-12 footer-info">
-              <a href="index.html" class="logo d-flex align-items-center">
-                <img src="{% static 'assets/img/logo.png' %}" alt="" />
-                <span>Why us</span>
-              </a>
-              <p>
-                D ALAO Our health agency recruitment platform is always at your
-                service. We operate 24/7 to provide you with the best possible
-                assistance in finding the right healthcare job. Whether you're a
-                job seeker or an employer, we're committed to ensuring that your
-                experience with us is seamless and efficient. Trust us to help
-                you take your career to the next level!
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-6 footer-links">
-              <h4>Useful Links</h4>
-              <ul>
-                <li>
-                  <i class="bi bi-chevron-right"></i>
-                  <a href="#">Terms of service</a>
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i>
-                  <a href="#">Privacy policy</a>
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i>
-                  <a href="#">Cookie policy</a>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
-            >
-              <h4>Contact Us</h4>
-              <p>
-                ALAO <br />
-                New York, NY 022<br />
-                United States <br /><br />
-                <strong>Booking Line:</strong> +44 7404 4244 75<br />
-                <strong>Email:</strong> alao@alaorecruits.com<br />
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="copyright">
-          Copyright &copy; 2023
-          <strong><span>D ALAO RECRUITMENT LTD</span></strong
-          >.
-        </div>
-      </div>
-    </footer>
-    <!-- End Footer -->
-
-    <a
-      href="#"
-      class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
-
-    <!-- Vendor JS Files -->
-    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-    <!-- Template Main JS File -->
-    <script src="{% static 'assets/js/main.js' %}"></script>
-  </body>
+					var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+					if (emailInput !== "" && emailPattern.test(emailInput)) {
+						console.log(emailInput);
+						axios
+							.post(
+								"/newsletter/",
+								{ email: emailInput },
+								{
+									headers: {
+										"X-CSRFToken": "{{ csrf_token }}",
+									},
+								}
+							)
+							.then((response) => {})
+							.catch((error) => {
+								// Handle any errors that occurred during the request
+							});
+					}
+				});
+			});
+		</script>
+	</body>
 </html>

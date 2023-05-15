@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frontend.apps.FrontendConfig',
+    "blogPage.apps.BlogpageConfig",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
@@ -53,8 +55,8 @@ WSGI_APPLICATION = 'healthcare.wsgi.app'
 
 
 # Database
-"""
-DATABASES = {
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -116,8 +118,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATICFILES_DIRS = ['fonts']
 STATIC_URL = 'fonts/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'font/')
+MEDIA_ROOT = os.path.join(BASE_DIR,'medias')
+MEDIA_URL = '/medias/'
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

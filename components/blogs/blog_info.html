@@ -1,0 +1,124 @@
+{% extends 'index.html' %}{% load humanize %} {% block 'content' %}
+<main id="main">
+	<section class="breadcrumbs">
+		<div class="container">
+			<ol>
+				<li><a href="{% url 'home' %}">Home</a></li>
+				<li><a href="{% url 'blogs' %}">News</a></li>
+			</ol>
+			{% if request.user == blog_info.user or request.user.is_staff %}
+			<button>Delete Post</button>
+			{% endif %}
+		</div>
+	</section>
+	<section
+		id="blog"
+		class="blog">
+		<div
+			class="container"
+			data-aos="fade-up">
+			<div class="row">
+				<div class="col-lg-8 entries">
+					<article class="entry entry-single">
+						<h2 class="entry-title">
+							<a href="{% url 'blog' blog_id=blog_info.blog_id%}">{{blog_info.blog_title}}</a>
+						</h2>
+
+						<div class="entry-meta">
+							<ul>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-person"></i>
+									<a href="{% url 'blog' blog_id=blog_info.blog_id%}">{{blog_info.user}}</a>
+								</li>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-clock"></i>
+									<a href="{% url 'blog' blog_id=blog_info.blog_id%}"><time>{{ blog_info.blog_created_time|date:"F j, Y" }}</time></a>
+								</li>
+
+								<li class="d-flex align-items-center">
+									<i class="bi bi-clock"></i>
+									<a href="{% url 'blog' blog_id=blog_info.blog_id%}"><time>{{ blog_info.blog_created_time|date:"h:i A" }}</time></a>
+								</li>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-chat-dots"></i>
+									<a href="{% url 'blog' blog_id=blog_info.blog_id%}">{{ count|intcomma:"h:i A" }}</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="entry-content">
+							<p>{{blog_info.blog_info}}</p>
+						</div>
+
+						<div class="entry-footer">
+							<i class="bi bi-folder"></i>
+							<ul class="cats">
+								<li><a href="#">Business</a></li>
+							</ul>
+
+							<i class="bi bi-tags"></i>
+							<ul class="tags">
+								<li><a href="#">Creative</a></li>
+								<li><a href="#">Tips</a></li>
+								<li><a href="#">Marketing</a></li>
+							</ul>
+						</div>
+					</article>
+
+					<div class="blog-comments">
+						<h4 class="comments-count">{{ count|intcomma:"h:i A" }} Comments</h4>
+
+						{% for comment in comments %}
+						<div
+							id="comment-1"
+							class="comment">
+							<div class="d-flex">
+								<div>
+									<h5>
+										<a href="">{{comment.blog_comment_user}}</a>
+										{% if request.user == comment.blog_comment_user or request.user.is_staff %}
+										<a
+											href="#"
+											class="reply"
+											><i class="bi bi-trash3"></i
+										></a>
+										{% endif %}
+									</h5>
+									<time>{{ comment.blog_comment_time|date:"F j, Y" }} - {{comment.blog_comment_time|date:"h: i, A" }}</time>
+									<p>{{comment.blog_comment}}</p>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+						<div class="reply-form">
+							<h4>Make a comment</h4>
+							<form method="POST">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col form-group">
+										<input
+											type="hidden"
+											name="blog_id"
+											value="{{ blog_info.blog_id }}" />
+										<textarea
+											name="comments"
+											required
+											class="form-control"
+											placeholder="Make Your Comment*"></textarea>
+									</div>
+								</div>
+								<button
+									type="submit"
+									class="btn btn-primary">
+									Post Comment
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+{% endblock 'content' %}
