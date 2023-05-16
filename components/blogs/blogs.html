@@ -7,7 +7,7 @@
 				<li><a href="{% url 'home' %}">Home</a></li>
 				<li>News</li>
 			</ol>
-			<button  onclick="location.href='/create-blog'">Create Post</button>
+			<button onclick="location.href='/create-blog'">Create Post</button>
 		</div>
 	</section>
 
@@ -30,7 +30,7 @@
 						</div>
 
 						<h2 class="entry-title">
-							<a href="{% url 'blog' blog_id=blog.blog_id%}">{{blog.blog_title}} {{blog.id}}</a>
+							<a href="{% url 'blog' blog_id=blog.blog_id%}">{{blog.blog_title}} </a>
 						</h2>
 
 						<div class="entry-meta">

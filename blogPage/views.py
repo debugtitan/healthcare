@@ -4,9 +4,11 @@ from django.views.generic import ListView,TemplateView
 from .models import BlogItem,BlogComment
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from frontend.views import logging
 from django.db.models import Count
 import json
+
 
 
 
@@ -89,3 +91,24 @@ class CreateBlog(TemplateView):
         except Exception as error:
             logging.warning(f"Create Blog error: {error}")
         return HttpResponse()
+    
+@csrf_exempt
+def deleteComment(request):
+    try:
+        commentDelete = json.loads(request.body)['data']
+        #print(commentDelete)
+        BlogComment.objects.filter(pk=commentDelete).delete()
+    except Exception as err:
+        print(err)
+    return HttpResponse()
+        
+
+@csrf_exempt
+def deleteBlog(request):
+    try:
+        blogDelete = json.loads(request.body)['data']
+        #print(blogDelete)
+        BlogItem.objects.filter(pk=blogDelete).delete()
+    except Exception as err:
+        print(err)
+    return redirect('blogs')

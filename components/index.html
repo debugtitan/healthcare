@@ -294,5 +294,49 @@
 				});
 			});
 		</script>
+
+		<script>
+			const trashIcons = document.querySelectorAll(".bi.bi-trash3");
+			trashIcons.forEach((icon) => {
+				icon.addEventListener("click", () => {
+					const commentKey = icon.getAttribute("data_key");
+
+					//console.log("delete icon clicked", commentKey);
+
+					axios
+						.post("/delete-comment/", {
+							data: commentKey,
+						})
+						.then((response) => {
+							//console.log(response.data);
+							location.reload();
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				});
+			});
+		</script>
+		<script>
+			const trashBlog = document.querySelectorAll(".bit");
+			trashBlog.forEach((icon) => {
+				icon.addEventListener("click", () => {
+					const newsKey = icon.getAttribute("data_key");
+
+					console.log("blog icon clicked", newsKey);
+					axios
+						.post("/delete-blog/", {
+							data: newsKey,
+						})
+						.then((response) => {
+							//console.log(response.data);
+							location.reload()
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				});
+			});
+		</script>
 	</body>
 </html>
