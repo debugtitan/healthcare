@@ -20,7 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'frontend.apps.FrontendConfig',
     "blogPage.apps.BlogpageConfig",
+    "adminpage.apps.AdminpageConfig",
     "django.contrib.humanize",
+    "tgs",
+
 ]
 
 MIDDLEWARE = [
@@ -31,6 +34,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'adminpage.manageusers.BanUserMiddleware',
 ]
 
 ROOT_URLCONF = 'healthcare.urls'

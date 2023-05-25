@@ -1,0 +1,32 @@
+@media only screen and (max-width: 1024px) {
+
+    .mkdf-content .mkdf-content-inner>.mkdf-container>.mkdf-container-inner,
+    .mkdf-content .mkdf-content-inner>.mkdf-full-width>.mkdf-full-width-inner {
+        padding-top: 80px !important
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width:1024px) {}
+
+@media only screen and (min-width: 481px) and (max-width:768px) {}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 40px;
+        line-height: 40px
+    }
+
+    h2 {
+        font-size: 35px;
+        line-height: 39px
+    }
+
+    h3 {
+        font-size: 20px
+    }
+
+    h4 {
+        font-size: 17px;
+        line-height: 30px
+    }
+}

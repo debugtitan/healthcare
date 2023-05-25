@@ -1,4 +1,4 @@
-{% extends 'index.html' %} {% load static %} {% load humanize %} {% block 'content' %}
+{% extends 'index.html' %} {% load static %} {% load post_tags %} {% load humanize %} {% block 'content' %}
 <main id="main">
 	<!-- ======= Breadcrumbs ======= -->
 	<section class="breadcrumbs">
@@ -19,7 +19,7 @@
 			data-aos="fade-up">
 			<div class="row">
 				<div class="col-lg-8 entries">
-					{% for blog in object_list %}
+					{% for blog in posts %}
 					<article class="entry">
 						<div class="entry-img">
 							<!----
@@ -67,7 +67,7 @@
 				<div class="col-lg-4">
 					<div class="sidebar">
 						<h3 class="sidebar-title">Recent Posts</h3>
-						{% for blog_item in recent_posts %}
+						{% for blog_item in posts|slice_queryset:3 %}
 						<div class="sidebar-item recent-posts">
 							<div class="post-item clearfix">
 								<h4>

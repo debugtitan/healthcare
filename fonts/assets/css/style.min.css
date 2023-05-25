@@ -1,0 +1,403 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap);
+
+
+
+::-moz-selection {
+    background: rgba(57, 108, 240, .9);
+    color: #fff
+}
+
+::selection {
+    background: rgba(57, 108, 240, .9);
+    color: #fff
+}
+
+a {
+    text-decoration: none !important
+}
+
+
+.features.feature-primary .title:hover {
+    color: #396cf0 !important
+}
+
+.features.feature-primary .icon {
+    color: #396cf0 !important;
+    background-color: rgba(57, 108, 240, .05) !important
+}
+
+.features.feature-primary .link {
+    color: #396cf0 !important
+}
+
+.features.feature-bg-primary:hover {
+    background-color: #396cf0 !important
+}
+
+.features.feature-secondary .title:hover {
+    color: #6c757d !important
+}
+
+.features.feature-secondary .icon {
+    color: #6c757d !important;
+    background-color: rgba(108, 117, 125, .05) !important
+}
+
+.features.feature-secondary .link {
+    color: #6c757d !important
+}
+
+.features.feature-bg-secondary:hover {
+    background-color: #6c757d !important
+}
+
+.features.feature-success .title:hover {
+    color: #53c797 !important
+}
+
+.features.feature-success .icon {
+    color: #53c797 !important;
+    background-color: rgba(83, 199, 151, .05) !important
+}
+
+.features.feature-success .link {
+    color: #53c797 !important
+}
+
+.features.feature-bg-success:hover {
+    background-color: #53c797 !important
+}
+
+.features.feature-info .title:hover {
+    color: #64c2f1 !important
+}
+
+.features.feature-info .icon {
+    color: #64c2f1 !important;
+    background-color: rgba(100, 194, 241, .05) !important
+}
+
+.features.feature-info .link {
+    color: #64c2f1 !important
+}
+
+.features.feature-bg-info:hover {
+    background-color: #64c2f1 !important
+}
+
+.features.feature-warning .title:hover {
+    color: #f1b561 !important
+}
+
+.features.feature-warning .icon {
+    color: #f1b561 !important;
+    background-color: rgba(241, 181, 97, .05) !important
+}
+
+.features.feature-warning .link {
+    color: #f1b561 !important
+}
+
+.features.feature-bg-warning:hover {
+    background-color: #f1b561 !important
+}
+
+.features.feature-danger .title:hover {
+    color: #f0735a !important
+}
+
+.features.feature-danger .icon {
+    color: #f0735a !important;
+    background-color: rgba(240, 115, 90, .05) !important
+}
+
+.features.feature-danger .link {
+    color: #f0735a !important
+}
+
+.features.feature-bg-danger:hover {
+    background-color: #f0735a !important
+}
+
+.features.feature-light .title:hover {
+    color: #f8f9fa !important
+}
+
+.features.feature-light .icon {
+    color: #f8f9fa !important;
+    background-color: rgba(248, 249, 250, .05) !important
+}
+
+.features.feature-light .link {
+    color: #f8f9fa !important
+}
+
+.features.feature-bg-light:hover {
+    background-color: #f8f9fa !important
+}
+
+.features.feature-dark .title:hover {
+    color: #212529 !important
+}
+
+.features.feature-dark .icon {
+    color: #212529 !important;
+    background-color: rgba(33, 37, 41, .05) !important
+}
+
+.features.feature-dark .link {
+    color: #212529 !important
+}
+
+.features.feature-bg-dark:hover {
+    background-color: #212529 !important
+}
+
+.features.feature-footer .title:hover {
+    color: #202942 !important
+}
+
+.features.feature-footer .icon {
+    color: #202942 !important;
+    background-color: rgba(32, 41, 66, .05) !important
+}
+
+.features.feature-footer .link {
+    color: #202942 !important
+}
+
+.features.feature-bg-footer:hover {
+    background-color: #202942 !important
+}
+
+.features.feature-muted .title:hover {
+    color: #8492a6 !important
+}
+
+.features.feature-muted .icon {
+    color: #8492a6 !important;
+    background-color: rgba(132, 146, 166, .05) !important
+}
+
+.features.feature-muted .link {
+    color: #8492a6 !important
+}
+
+.features.feature-bg-muted:hover {
+    background-color: #8492a6 !important
+}
+
+.features {
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease
+}
+
+.features .icon {
+    height: 65px;
+    width: 65px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.features .title {
+    font-weight: 500
+}
+
+.features .big-icon {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 20px;
+    opacity: .05;
+    font-size: 120px
+}
+
+.features .big-icon,
+.features .icons,
+.features .para,
+.features .titles {
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease
+}
+
+.features:hover .big-icon,
+.features:hover .icons,
+.features:hover .titles {
+    color: #fff !important
+}
+
+.features:hover .para {
+    color: rgba(255, 255, 255, .5) !important
+}
+
+.bg-home {
+    height: 100vh;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-half-260 {
+    padding: 260px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-half-170 {
+    padding: 170px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-half-150 {
+    padding: 150px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-profile {
+    padding: 80px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-dashboard {
+    padding: 100px 0 30px;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.bg-hero {
+    padding: 100px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center
+}
+
+.dr-profile-img {
+    position: absolute;
+    bottom: 0
+}
+
+#container {
+    overflow: hidden;
+}
+
+p {
+    font-size: 13px;
+    color: #666666;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    margin: 0 0 10px;
+}
+
+h1 {
+    color: #012970;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 00;
+    margin: 0 0 20px;
+    line-height: auto;
+}
+
+h2 {
+    color: #333333;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 450;
+    margin: 0 0 10px;
+}
+
+section#about-section {
+    padding: 100px 0 50px;
+}
+
+section#about-section .about-box .about-post {
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+section#about-section .about-box .about-post>a {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    line-height: 70px;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    background: #3498db;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    float: left;
+}
+
+section#about-section .about-box .about-post>a:hover {
+    background: #3498db;
+}
+
+section#about-section .about-box .about-post .about-post-content {
+    margin-left: 100px;
+}
+
+section#about-section .about-box .about-post .about-post-content h2 {
+    color: #333333;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 20px;
+    margin-bottom: 7px;
+}
+
+section#about-section .about-box .about-post .about-post-content h2 a {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    color: #333333;
+}
+
+section#about-section .about-box .about-post .about-post-content h2 a:hover {
+    color: #3498db;
+}
+
+section#about-section .about-box .about-post .about-post-content p {
+    margin-bottom: 0;
+}

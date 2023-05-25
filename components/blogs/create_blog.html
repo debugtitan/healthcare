@@ -1,107 +1,48 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
-		<title>D-ALAO | Create news</title>
-		<link
-			href="{% static 'appointments/css/styles.css' %}"
-			rel="stylesheet" />
-		<link
-			href="{% static 'assets/img/favicon.png' %}"
-			rel="icon" />
-		<link
-			href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
-			rel="stylesheet" />
-		<link
-			href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
-			rel="stylesheet" />
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	</head>
-	<body>
-		<div class="container mt-5">
-			<div class="row d-flex justify-content-center align-items-center">
-				<div class="col-md-8">
-					<form id="regForm">
-						<h1 id="register">New Blog Post</h1>
-						<div
-							class="all-steps"
-							id="all-steps">
-							<span class="step"><i class="bi bi-person-check"></i></span>
-							<span class="step"><i class="bi bi-envelope-at"></i></span>
-							<span class="step"><i class="bi bi-card-checklist"></i></span>
-						</div>
-						<div class="tab">
-							<h6>What's your blog title?</h6>
-							<p>
-								<input
-									placeholder="Blog Title"
-									oninput="this.className = ''"
-									name="title" />
-							</p>
-						</div>
-						<div class="tab">
-							<h6>what's the blog post about?</h6>
-							<p>
-								<input
-									placeholder="short description"
-									oninput="this.className = ''"
-									name="bdesc"
-									type="text" />
-							</p>
-						</div>
-						<div class="tab">
-							<h6>Enter the blog post contents</h6>
-							<p>
-								<input
-									placeholder="blog contents"
-									oninput="this.className = ''"
-									name="contents"
-									type="text" />
-							</p>
-						</div>
-						<div
-							class="thanks-message text-center"
-							id="text-message">
-							<img
-								src="{% static 'appointments/done.png' %}"
-								width="100"
-								class="mb-4" />
-							<h3>Blog sent for approval!</h3>
-							<span>Thanks for your blog post, It has been sent for review!</span>
-							<a href="{% url 'blogs' %}">Blogs</a>
-						</div>
-						<div
-							style="overflow: auto"
-							id="nextprevious">
-							<div style="float: right">
-								<button
-									type="button"
-									id="prevBtn"
-									onclick="nextPrev(-1)">
-									<i class="bi bi-arrow-left-short"></i>
-								</button>
-								<button
-									type="button"
-									id="nextBtn"
-									onclick="nextPrev(1)">
-									<i class="bi bi-arrow-right"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+{% extends 'index.html' %} {% load static %} {% block 'content' %}
 
-		<script src="{% static 'appointments/js/jquery.min.js' %}"></script>
-		<script src="{% static 'appointments/js/blogs.js' %}"></script>
-		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-	</body>
-</html>
+<div class="containers">
+	<h2>Create Post</h2>
+	<p>Create an Informative and Engaging Blog Post on Health Issues, Nutrition, or Ant Health Recruitment.</p>
+
+	<form method='POST'>
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-25">
+				<label for="fname">Post Title:</label>
+			</div>
+			<div class="col-75">{{form.blog_title}}</div>
+		</div>
+		<div class="row">
+			<div class="col-25">
+				<label for="lname">Post Description:</label>
+			</div>
+			<div class="col-75">{{form.blog_description}}</div>
+		</div>
+		<!---
+		<div class="row">
+			<div class="col-25">
+				<label for="country">Country</label>
+			</div>
+			<div class="col-75">
+				<select
+					id="country"
+					name="country">
+					<option value="australia">Australia</option>
+					<option value="canada">Canada</option>
+					<option value="usa">USA</option>
+				</select>
+			</div>
+		</div>-->
+		<div class="row">
+			<div class="col-25">
+				<label for="subject">Post Subject:</label>
+			</div>
+			<div class="col-75">{{form.blog_info}}</div>
+		</div>
+		<div class="row">
+			<button type="submit">Create Post</button>
+		</div>
+	</form>
+</div>
+
+{% endblock 'content' %}

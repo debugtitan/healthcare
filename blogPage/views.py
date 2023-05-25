@@ -1,97 +1,63 @@
 
+from urllib import request
 from django.shortcuts import redirect, render,HttpResponseRedirect,HttpResponse
-from django.views.generic import ListView,TemplateView
+from django.views.generic import ListView,DetailView,CreateView,FormView
 from .models import BlogItem,BlogComment
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_exempt
-from frontend.views import logging
-from django.db.models import Count
 import json
+from django.urls import reverse_lazy
 
 
 
 
-# Create your views here.
 
-@method_decorator(login_required(login_url='signin'), name='dispatch')
-class Blogs(ListView):
+class Blogs(LoginRequiredMixin,ListView):
     model = BlogItem
     template_name = "blogs/blogs.html"
+    ordering = ['-blog_created_time']
+    context_object_name = 'posts'
+    login_url = 'signin'
     
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.order_by('-blog_created_time')
-        return queryset
+
+
+
+class SpecificBlog(LoginRequiredMixin,DetailView):
+    model = BlogItem
+    template_name = "blogs/blog_info.html"
+    context_object_name = "blog_info"
+    slug_field = "blog_id"
+    slug_url_kwarg = "blog_id"
+    
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['recent_posts'] = self.get_queryset()[:5]
-        context['comments_total'] = BlogItem.objects.annotate(comment_count=Count('blogcomment')).values('comment_count')
+        context['cm'] = BlogComment.objects.filter(blog_id=self.get_object())
         return context
-
-
-@method_decorator(login_required(login_url='signin'), name='dispatch')
-class SpecificBlog(ListView):
-    model = BlogComment
-    template_name = "blogs/blog_info.html"
-
-    def get(self, request,**kwargs):
-        try:
-            blog_item = BlogItem.objects.get(blog_id=kwargs.get('blog_id'))
-            cm =  BlogComment.objects.filter(blog_id=blog_item).order_by('-blog_comment_time')
-            data = {
-                 "comments": cm, #query all comments for the specific blog this user clicked
-                 "blog_info": blog_item,
-                 "count": BlogComment.objects.filter(blog_id=blog_item).count()
-            }
-
-            return render(request, self.template_name, data)
-        except BlogItem.DoesNotExist:
-                return redirect('blogs')
-        
-    def post(self,request,*args, **kwargs):
-        try:
-            logging.info(f"Comment: {request.POST['comments']} for blog: {kwargs.get('blog_id')}")
-            comment = BlogComment(
+       
+    def post(self, request, *args, **kwargs):
+        BlogComment(
                 blog_id =  BlogItem.objects.get(blog_id=kwargs.get('blog_id')),
                 blog_comment_user = request.user,
                 blog_comment  = request.POST['comments'],
-            )
-            comment.save()
-            blog_item = BlogItem.objects.get(blog_id=kwargs.get('blog_id'))
-            cms =BlogComment.objects.filter(blog_id=blog_item).order_by('-blog_comment_time')
-            data = {
-                    "comments": cms, #query all comments for the specific blog this user clicked
-                    "blog_info": blog_item,
-                    "count": BlogComment.objects.filter(blog_id=blog_item).count()
-            }
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))  
-        except Exception as err:
-            logging.warn(f'error save comment {err}')
-            redirect('blogs')
+        ).save()
+        return HttpResponseRedirect(self.request.path_info)
+           
         
 
-class CreateBlog(TemplateView):
+class CreateBlog(LoginRequiredMixin,CreateView):
+    model = BlogItem
     template_name = "blogs/create_blog.html"
-    
+    fields =['blog_title', 'blog_description', 'blog_info']
+    success_url = reverse_lazy('blogs')
 
-    def post(self,request):
-        try:
-            inData= json.loads(request.body)
-            print(inData)
-            blog_item = BlogItem(
-                user=request.user, 
-                blog_title=inData['title'], 
-                blog_description=inData['desc'], 
-                blog_info=inData['contents']
-            )
-            blog_item.save()
-            
-        except Exception as error:
-            logging.warning(f"Create Blog error: {error}")
-        return HttpResponse()
-    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        print(form)
+        return super().form_valid(form)
+
+
 @csrf_exempt
 def deleteComment(request):
     try:

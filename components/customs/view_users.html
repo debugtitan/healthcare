@@ -1,0 +1,60 @@
+{% extends 'index.html' %} {% load static %}{% block 'content' %}
+
+<link
+	rel="stylesheet"
+	href="{% static 'customs/users.css' %}" />
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box clearfix">
+				<div class="table-responsive">
+					<table class="table user-list">
+						<thead>
+							<tr>
+								<th><span>User</span></th>
+								<th><span>Joined</span></th>
+								<th class="text-center"><span>Name</span></th>
+								<th><span>Email</span></th>
+								<th><span>Active Time</span></th>
+								<th>&nbsp; Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in object_list %}
+							<tr>
+								<td>
+									<a
+										href="#"
+										class="user-link"
+										>{{user.username}}</a
+									>
+								</td>
+								<td>{{ user.date_joined|date:"F j, Y, h:i A" }}</td>
+								<td class="text-center">
+									<span class="label label-default">{{user.first_name}} {{user.last_name}}</span>
+								</td>
+								<td>
+									<a href="#">{{user.email}}</a>
+								</td>
+								<td>{{user.last_login}}</td>
+								<td style="width: 20%">
+									<a
+										href="#"
+										class="table-link">
+										<span class="fa-stack">
+											{% if user.is_banned == None %}{% endif %}
+											<i class="bi bi-archive"></i>
+											
+										</span>
+									</a>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock 'content' %}

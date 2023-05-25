@@ -1,9 +1,7 @@
-
-
 * {
     scroll-behavior: smooth;
     outline: none;
-    font-family: source sans pro,sans-serif
+    font-family: source sans pro, sans-serif
 }
 
 
@@ -19,7 +17,9 @@ p {
     margin: 0
 }
 
-#root,body,html {
+#root,
+body,
+html {
     height: 100%
 }
 
@@ -39,7 +39,7 @@ body {
 }
 
 .styles_copyright {
-    font-family: syne,sans-serif;
+    font-family: syne, sans-serif;
     color: #13171c;
     font-size: 13px;
     order: 3;
@@ -48,7 +48,7 @@ body {
 }
 
 .styles_copyright span {
-    font-family: syne,sans-serif;
+    font-family: syne, sans-serif;
     color: #64acff
 }
 
@@ -70,12 +70,13 @@ body {
 
 @media screen and (min-width: 768px) {
     .styles_footer {
-        flex-direction:row;
+        flex-direction: row;
         justify-content: space-between;
         padding: 30px 130px 30px 30px
     }
 
-    .styles_copyright,.styles_links {
+    .styles_copyright,
+    .styles_links {
         flex-shrink: 0;
         order: unset;
         margin-top: 0
@@ -107,7 +108,7 @@ body {
 .form_style_container {
     position: absolute;
     transition: .3s;
-    font-size:14px;
+    font-size: 14px;
     padding: 15px;
     background-color: #fff;
     max-width: 260px;
@@ -118,13 +119,13 @@ body {
     visibility: hidden;
     opacity: 0;
     line-height: 14px;
-    -webkit-transform: translate(20px,-50px);
-    transform: translate(20px,-50px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.06);
+    -webkit-transform: translate(20px, -50px);
+    transform: translate(20px, -50px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
     color: grey
 }
 
-.form_infos{
+.form_infos {
     cursor: pointer;
     margin-left: 10px
 }
@@ -134,7 +135,7 @@ body {
     visibility: visible
 }
 
-.form_small .form_infos{
+.form_small .form_infos {
     margin-left: 4px
 }
 
@@ -170,7 +171,7 @@ body {
     height: 37px;
     box-sizing: border-box;
     border-radius: 8px;
-    background-color: #fff!important;
+    background-color: #fff !important;
     border: 1px solid #d2d2d2;
     width: 100%;
     transition: .3s;
@@ -178,11 +179,26 @@ body {
     font-size: 16px
 }
 
-.cls{
+#id_password1,
+#id_password2 {
+    height: 37px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fff !important;
+    border: 1px solid #d2d2d2;
+    width: 100%;
+    transition: .3s;
+    padding: 9px 40px 9px 17px;
+    font-size: 16px
+}
+
+.cls {
     color: rgb(192, 7, 7);
     font-size: 15px;
 }
-.form_all_inputs::-webkit-inner-spin-button,.form_all_inputs::-webkit-outer-spin-button {
+
+.form_all_inputs::-webkit-inner-spin-button,
+.form_all_inputs::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0
 }
@@ -207,7 +223,7 @@ body {
 
 @media(max-width: 450px) {
     .form_rows {
-        height:unset
+        height: unset
     }
 }
 
@@ -291,7 +307,7 @@ body {
     max-width: 437px;
     min-height: 670px;
     padding: 25px;
-    box-shadow: 0 10px 20px rgba(0,0,0,.06);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
     border-radius: 8px;
     box-sizing: border-box
 }
@@ -304,7 +320,7 @@ body {
 }
 
 .form_container .form_styles .form_logo {
-    font-family: syne,sans-serif;
+    font-family: syne, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 23px;
@@ -336,6 +352,7 @@ body {
     height: auto;
     margin-bottom: 20px
 }
+
 .form_container .form_styles .form_inputs_po {
     position: relative;
     width: 100%;
@@ -381,18 +398,18 @@ body {
 
 @media(max-width: 770px) {
     .form_container {
-        min-height:calc(100vh - 130px);
+        min-height: calc(100vh - 130px);
         margin-top: 60px;
         justify-content: flex-start;
         flex-direction: column
     }
 
-    
+
 }
 
 @media(max-width: 450px) {
     .form_container .form_styles {
-        width:calc(100vw - 60px)
+        width: calc(100vw - 60px)
     }
 }
 
@@ -403,7 +420,7 @@ a {
     text-decoration: none;
 }
 
-.styles_link_po{
+.styles_link_po {
     color: #64acff;
     font-size: 16px;
     font-weight: 400;
@@ -418,6 +435,7 @@ a {
     text-align: center;
     padding: 0 17px
 }
+
 .styles_redirects .styles_redirects_text {
     color: #64acff;
     font-size: 16px;

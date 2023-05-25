@@ -1,4 +1,4 @@
-{% extends 'index.html' %}{% load humanize %} {% block 'content' %}
+{% extends 'index.html' %}{% load humanize %} {% load post_tags %}{% block 'content' %}
 <main id="main">
 	<section class="breadcrumbs">
 		<div class="container">
@@ -38,7 +38,7 @@
 								</li>
 								<li class="d-flex align-items-center">
 									<i class="bi bi-chat-dots"></i>
-									<a href="{% url 'blog' blog_id=blog_info.blog_id%}">{{ count|intcomma:"h:i A" }}</a>
+									<a href="{% url 'blog' blog_id=blog_info.blog_id%}">{{ cm|length|intcomma:"h:i A" }}</a>
 								</li>
 							</ul>
 						</div>
@@ -76,16 +76,16 @@
 					</article>
 
 					<div class="blog-comments">
-						<h4 class="comments-count">{{ count|intcomma:"h:i A" }} Comments</h4>
+						<h4 class="comments-count">{{ cm|length |intcomma:"h:i A" }} Comments</h4>
 
-						{% for comment in comments %}
+						{% for comment in cm|comment_by_time %}
 						<div
 							id="comment-1"
 							class="comment">
 							<div class="d-flex">
 								<div>
 									<h5>
-										<a href="">{{comment.blog_comment_user}}</a>
+										<a href="">{{comment.blog_comment_user}} </a>
 										{% if request.user == comment.blog_comment_user or request.user.is_staff %}
 										<a
 											href="#"

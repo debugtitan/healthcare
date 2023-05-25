@@ -21,6 +21,17 @@
 			rel="icon" />
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+		<link
+			href="{% static 'assets/css/icons.min.css'%}"
+			rel="stylesheet"
+			type="text/css" />
+
+		<link
+			href="{% static 'assets/css/style.min.css' %}"
+			class="theme-opt"
+			rel="stylesheet"
+			type="text/css" />
+
 		<!-- Google Fonts -->
 		<link
 			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -49,6 +60,10 @@
 		<!-- Template Main CSS File -->
 		<link
 			href="{% static 'assets/css/style.css' %}"
+			rel="stylesheet" />
+
+		<link
+			href="{% static 'blog/style.css' %}"
 			rel="stylesheet" />
 	</head>
 
@@ -81,7 +96,7 @@
 						<li>
 							<a
 								class="nav-link scrollto"
-								href="#about"
+								href="{% url 'about' %}"
 								>About</a
 							>
 						</li>
@@ -95,45 +110,42 @@
 						</li>
 						{% endif %}
 						<li class="dropdown">
-							<a href="#"><span>Careers</span> <i class="bi bi-chevron-down"></i></a>
+							<a><span>Careers</span> <i class="bi bi-chevron-down"></i></a>
 							<ul>
-								<li><a href="#">Vacancies - Internal Jobs</a></li>
-								<li><a href="#">Start your own Business</a></li>
+								<li><a>Vacancies - Internal Jobs</a></li>
+								<li><a>Start your own Business</a></li>
 							</ul>
 						</li>
+
+						{% if request.user.is_authenticated and request.user.is_staff %}
 						<li>
 							<a
 								class="nav-link scrollto"
 								href="#contact"
-								>Contact</a
+								>Admin Page</a
 							>
 						</li>
 
-						{% if request.user.is_authenticated and request.user.is_staff %}
-						<li class="dropdown">
-							<a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
-							<ul>
-								<li><a href="#">View User</a></li>
-								<li><a href="#">Appointments</a></li>
-								<li><a href="#">Email User</a></li>
-								<li><a href="{% url 'admin:index' %}">Main Panel</a></li>
-							</ul>
+						<li>
+							<a
+								class="nav-link scrollto"
+								href="{% url 'admin:index' %}"
+								>Default Panel</a
+							>
 						</li>
 						{% endif %}
 
 						<li>
 							{% if request.user.is_authenticated %}
 							<a
-								href="signout"
+								href="{% url 'signout' %}"
 								class="getstarted scrollto"
-								href="#about"
 								>Sign Out</a
 							>
 							{% else %}
 							<a
 								href="{% url 'signin' %}"
 								class="getstarted scrollto"
-								href="#about"
 								>Sign In</a
 							>
 							{% endif %}
@@ -143,32 +155,230 @@
 				</nav>
 			</div>
 		</header>
-
-		{% block 'content' %}{% endblock 'content' %}
-
-		<footer
-			id="footer"
-			class="footer">
-			<div class="footer-newsletter">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-12 text-center">
-							<h4>Newsletter</h4>
-							<p>Leave your email let's keep in touch!</p>
+		<section
+			id="hero"
+			class="hero d-flex align-items-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 d-flex flex-column justify-content-center">
+						{% if msg %}
+						<div class="container mt-5">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+									<div class="alert alert_success">
+										<button
+											aria-hidden="true"
+											data-dismiss="alert"
+											class="close"
+											type="button">
+											&times;
+										</button>
+										<strong>success!</strong>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-lg-6">
-							<input
-								type="email"
-								name="email"
-								id="newsletter"
-								required />
-							<input
-								type="submit"
-								value="Subscribe" />
+						{% endif %}
+						<h1 data-aos="fade-up">Seek & Employ</h1>
+						<h2
+							data-aos="fade-up"
+							data-aos-delay="400">
+							D-ALAO health care agency recruits and supplies highly-competent nurses and healthcare professionals to the NHS and private health care organizations
+							across the UK. We use a rigorous recruitment process to ensure quality and work closely with clients to meet their unique staffing needs.
+						</h2>
+						<div
+							data-aos="fade-up"
+							data-aos-delay="600">
+							<div class="text-center text-lg-start">
+								{% if request.user.is_authenticated %}
+								<a
+									href="{% url 'appointments' %}"
+									class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+									<span>Make an Appointment</span>
+									<i class="bi bi-arrow-right"></i>
+								</a>
+								{% else %}
+								<a
+									href="{% url 'signup' %}"
+									class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+									<span>Get Started</span>
+									<i class="bi bi-arrow-right"></i>
+								</a>
+								{% endif %}
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</section>
+		<section
+			id="counts"
+			class="counts">
+			<div
+				class="container"
+				data-aos="fade-up">
+				<div class="row gy-4">
+					<div class="col-lg-3 col-md-6">
+						<div class="count-box">
+							<i class="ri-user-smile-fill"></i>
+							<div>
+								<span
+									data-purecounter-start="0"
+									data-purecounter-end="7"
+									data-purecounter-duration="1"
+									class="purecounter"></span>
+								<p>Doctors</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="count-box">
+							<i
+								class="bi bi-person-hearts"
+								style="color: #ee6c20"></i>
+							<div>
+								<span
+									data-purecounter-start="0"
+									data-purecounter-end="1925"
+									data-purecounter-duration="1"
+									class="purecounter"></span>
+								<p>Patient Registered</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="count-box">
+							<i
+								class="bi bi-people"
+								style="color: #bb0852"></i>
+							<div>
+								<span
+									data-purecounter-start="0"
+									data-purecounter-end="28"
+									data-purecounter-duration="1"
+									class="purecounter"></span>
+								<p>Staffs</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="count-box">
+							<i
+								class="bi bi-journal-richtext"
+								style="color: #bb0852"></i>
+							<div>
+								<span
+									data-purecounter-start="0"
+									data-purecounter-end="5"
+									data-purecounter-duration="1"
+									class="purecounter"></span>
+								<p>Vacancies</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="about-section">
+			<div class="container">
+				<div class="title-section">
+					<h1>
+						D-Aloa <br />
+						Medical and Healthcare Center
+					</h1>
+					<p>
+						We are a healthcare organization and recruitment service dedicated to providing the highest quality care possible to patients. With a commitment to
+						patient-centered care, evidence-based research and practice, accountability, and continuous improvement, we strive to create a culture of excellence within
+						our organization. Our recruitment service connects qualified healthcare professionals with rewarding career opportunities, enabling us to deliver
+						exceptional care to our patients. We are passionate about improving healthcare outcomes and making a positive impact in the lives of our patients and the
+						healthcare industry as a whole.
+					</p>
+				</div>
+				<div class="about-box">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="about-post">
+								<a><i class="bi bi-person-hearts"></i></a>
+								<div class="about-post-content">
+									<h2><a>Professional Doctors</a></h2>
+									<p>
+										highly skilled and experienced doctors, committed to delivering exceptional medical care and personalized treatment, ensuring the best
+										possible outcomes for our patients.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="about-post">
+								<a><i class="bi bi-hospital"></i></a>
+								<div class="about-post-content">
+									<h2><a>Emergency Help</a></h2>
+									<p>
+										immediate emergency assistance, ensuring prompt and reliable medical care in critical situations for the well-being and safety of our
+										patients.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="about-post">
+								<a><i class="ri-microscope-fill"></i></a>
+								<div class="about-post-content">
+									<h2><a>Laboratory Analysis</a></h2>
+									<p>delivering precise and timely analysis for effective diagnostics, aiding in personalized treatment plans and improved patient outcomes.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% block 'content' %}{% endblock 'content' %}
+
+		<section class="section">
+			<div class="container mt-100 mt-60">
+				<div class="row justify-content-center">
+					<div class="col-12">
+						<div class="section-title mb-4 pb-2 text-center">
+							<span class="badge rounded-pill bg-soft-primary mb-3">Departments</span>
+							<h4 class="title mb-4">Our Medical Services</h4>
+						</div>
+					</div>
+					<!--end col-->
+				</div>
+				<!--end row-->
+
+				<div class="row">
+					{% for parts in departments %}
+					<div class="col-xl-3 col-md-4 col-12 mt-5">
+						<div class="card features feature-primary border-0">
+							<div class="icon text-center rounded-md">
+								<i class="{{parts.icon_name}} h3 mb-0"></i>
+							</div>
+							<div class="card-body p-0 mt-3">
+								<a
+									href="departments.html"
+									class="title text-dark h5"
+									>{{parts.title}}</a
+								>
+								<p class="text-muted mt-3">{{parts.desc}}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+		<footer
+			id="footer"
+			class="footer">
+			{% block 'newsletter' %}{% endblock 'newsletter' %}
 
 			<div class="footer-top">
 				<div class="container">
@@ -188,21 +398,9 @@
 								efficient. Trust us to help you take your career to the next level!
 							</p>
 							<div class="social-links mt-3">
-								<a
-									href="#"
-									class="twitter"
-									><i class="bi bi-twitter"></i
-								></a>
-								<a
-									href="#"
-									class="facebook"
-									><i class="bi bi-facebook"></i
-								></a>
-								<a
-									href="#"
-									class="linkedin"
-									><i class="bi bi-linkedin"></i
-								></a>
+								<a class="twitter"><i class="bi bi-twitter"></i></a>
+								<a class="facebook"><i class="bi bi-facebook"></i></a>
+								<a class="linkedin"><i class="bi bi-linkedin"></i></a>
 							</div>
 						</div>
 
@@ -211,15 +409,15 @@
 							<ul>
 								<li>
 									<i class="bi bi-chevron-right"></i>
-									<a href="#">Terms of service</a>
+									<a>Terms of service</a>
 								</li>
 								<li>
 									<i class="bi bi-chevron-right"></i>
-									<a href="#">Privacy policy</a>
+									<a>Privacy policy</a>
 								</li>
 								<li>
 									<i class="bi bi-chevron-right"></i>
-									<a href="#">Cookie policy</a>
+									<a>Cookie policy</a>
 								</li>
 							</ul>
 						</div>
@@ -248,11 +446,7 @@
 		</footer>
 		<!-- End Footer -->
 
-		<a
-			href="#"
-			class="back-to-top d-flex align-items-center justify-content-center"
-			><i class="bi bi-arrow-up-short"></i
-		></a>
+		<a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 		<!-- Vendor JS Files -->
 		<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
@@ -330,7 +524,7 @@
 						})
 						.then((response) => {
 							//console.log(response.data);
-							location.reload()
+							location.reload();
 						})
 						.catch((error) => {
 							console.log(error);

@@ -78,7 +78,7 @@ function getDataSendBlog() {
 		.post(
 			"/create-blog/",
 			{
-				title: blogTitle,
+				blog_title: blogTitle,
 				desc: blogDescription,
 				contents: blogContent,
 			},
@@ -89,7 +89,7 @@ function getDataSendBlog() {
 			}
 		)
 		.then((response) => {
-			console.log(response.data);
+			//
 		})
 		.catch((error) => {
 			//console.error(error);

@@ -1,0 +1,109 @@
+{% extends 'index.html' %} {% load static %}{% block 'content' %}
+
+<main id="main">
+	<section
+		id="values"
+		class="values">
+		<div
+			class="container"
+			data-aos="fade-up">
+			<header class="section-header">
+				<h2>Our Values</h2>
+			</header>
+
+			<div class="row">
+				<div
+					class="col-lg-4"
+					data-aos="fade-up"
+					data-aos-delay="200">
+					<div class="box">
+						<img
+							src="{% static 'assets/img/patient.png' %}"
+							class="img-fluid"
+							alt="" />
+						<h3>Patient-centered care</h3>
+						<p>
+							At D-ALAO, we put our patients at the center of everything we do. Our team of healthcare professionals is committed to providing personalized,
+							compassionate care that prioritizes the unique needs and preferences of each patient
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="col-lg-4 mt-4 mt-lg-0"
+					data-aos="fade-up"
+					data-aos-delay="400">
+					<div class="box">
+						<img
+							src="{% static 'assets/img/teamwork.png' %}"
+							class="img-fluid"
+							alt="" />
+						<h3>Teamwork and collaboration</h3>
+						<p>
+							we believe that effective teamwork and collaboration are essential to delivering high-quality care. Our team of healthcare professionals from different
+							disciplines work together to provide comprehensive care. We foster a culture of mutual respect, open communication, and shared decision-making to ensure
+							that our patients receive the best possible care.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="col-lg-4 mt-4 mt-lg-0"
+					data-aos="fade-up"
+					data-aos-delay="600">
+					<div class="box">
+						<img
+							src="{% static 'assets/img/improve.png' %}"
+							class="img-fluid"
+							alt="" />
+						<h3>Continuous improvement.</h3>
+
+						<p>
+							Continuous improvement is a key value at our healthcare agency. We are dedicated to constantly learning, growing, and evolving to provide the best
+							possible care to our patients. By regularly assessing and improving our processes and practices, we strive to deliver the highest quality care possible
+							and achieve better outcomes for our patients.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="col-lg-4 mt-4 mt-lg-0"
+					data-aos="fade-up"
+					data-aos-delay="600">
+					<div class="box">
+						<img
+							src="{% static 'assets/img/research.png' %}"
+							class="img-fluid"
+							alt="" />
+						<h3>Evidence-Based Practice.</h3>
+
+						<p>
+							We are committed to evidence-based research and practice at our healthcare agency, staying up-to-date with the latest scientific findings to ensure our
+							treatments and practices are effective, safe, and based on the best available evidence.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="col-lg-4 mt-4 mt-lg-0"
+					data-aos="fade-up"
+					data-aos-delay="600">
+					<div class="box">
+						<img
+							src="{% static 'assets/img/accountability.png' %}"
+							class="img-fluid"
+							alt="" />
+						<h3>Accountability.</h3>
+
+						<p>
+							We prioritize accountability at our healthcare agency, taking responsibility for our actions and decisions. We believe that transparency and honesty
+							build trust with patients and help us provide the highest quality care possible.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
+{% endblock 'content' %}
